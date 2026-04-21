@@ -1,1 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Education</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon"></></span>
+                <span class="logo-text">Simple<br><strong>Education</strong></span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                Dashboard
+            </a>
+            <a href="#" class="nav-item" data-page="completed">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4"/>
+                    <circle cx="12" cy="12" r="10"/>
+                </svg>
+                Completed
+            </a>
+            <a href="#" class="nav-item" data-page="pending">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                Active / Overdue
+            </a>
+            <a href="#" class="nav-item" data-page="grades">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                Grades
+            </a>            <a href="#" class="nav-item" data-page="messages">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+                Messages
+                <span class="badge" id="msg-badge">3</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">AP</div>
+                <div class="user-info">
+                    <div class="user-name">Alex Petrov</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <button class="menu-toggle" id="menuToggle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <div class="top-bar-right">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" placeholder="Search..." id="searchInput">
+                </div>
+                <div class="notification-bell" id="notifBell">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                    </svg>
+                    <span class="notif-dot"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Pages -->        <div class="page-content">
+
+            <!-- Dashboard Page -->
+            <div class="page active" id="page-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-completed">12</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--orange">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-pending">5</span>
+                            <span class="stat-label">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--red">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-overdue">2</span>
+                            <span class="stat-label">Overdue</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-avg">87%</span>                            <span class="stat-label">Average</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card card--wide">
+                        <div class="card-header">
+                            <h3>📊 Course Progress</h3>
+                        </div>
+                        <div class="progress-overview">
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>JavaScript Basics</span>
+                                    <span class="progress-percent">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-fill--blue" style="width:85%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Python Advanced</span>
+                                    <span class="progress-percent">60%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-fill--orange" style="width:60%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>React Fundamentals</span>
+                                    <span class="progress-percent">40%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-fill--green" style="width:40%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>SQL & Databases</span>
+                                    <span class="progress-percent">95%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-fill--purple" style="width:95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>🔔 Upcoming Deadlines</h3>
+                        </div>
+                        <div class="deadline-list">
+                            <div class="deadline-item deadline-item--urgent">
+                                <div class="deadline-dot"></div>
+                                <div class="deadline-info">
+                                    <div class="deadline-title">React: Hooks & Context API</div>
+                                    <div class="deadline-date">Today, 23:59</div>
+                                </div>
+                                <span class="deadline-tag tag--urgent">Urgent</span>
+                            </div>
+                            <div class="deadline-item deadline-item--soon">
+                                <div class="deadline-dot"></div>
+                                <div class="deadline-info">
+                                    <div class="deadline-title">Python: Decorators & Generators</div>
+                                    <div class="deadline-date">Tomorrow, 18:00</div>
+                                </div>
+                                <span class="deadline-tag tag--soon">Soon</span>
+                            </div>
+                            <div class="deadline-item">
+                                <div class="deadline-dot"></div>
+                                <div class="deadline-info">
+                                    <div class="deadline-title">JS: Async & Promises</div>
+                                    <div class="deadline-date">Apr 25, 12:00</div>
+                                </div>
+                                <span class="deadline-tag tag--normal">On Track</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>💬 Recent Messages</h3>
+                        </div>
+                        <div class="message-preview-list">
+                            <div class="message-preview">
+                                <div class="message-preview-avatar" style="background:#6366f1;">JD</div>
+                                <div class="message-preview-content">
+                                    <div class="message-preview-header">
+                                        <strong>John Doe</strong>
+                                        <span class="message-preview-time">2h ago</span>
+                                    </div>
+                                    <div class="message-preview-text">Could you review my React solution...</div>
+                                </div>
+                            </div>
+                            <div class="message-preview">
+                                <div class="message-preview-avatar" style="background:#10b981;">MI</div>
+                                <div class="message-preview-content">                                    <div class="message-preview-header">
+                                        <strong>Maria Ivanova</strong>
+                                        <span class="message-preview-time">5h ago</span>
+                                    </div>
+                                    <div class="message-preview-text">Great work! Just one minor suggestion on...</div>
+                                </div>
+                            </div>
+                            <div class="message-preview">
+                                <div class="message-preview-avatar" style="background:#f59e0b;">IN</div>
+                                <div class="message-preview-content">
+                                    <div class="message-preview-header">
+                                        <strong>Instructor</strong>
+                                        <span class="message-preview-time">Yesterday</span>
+                                    </div>
+                                    <div class="message-preview-text">Reminder: Assignment due by end of week...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Page -->
+            <div class="page" id="page-completed">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>✅ Completed Assignments</h3>
+                        <div class="card-header-actions">
+                            <select class="filter-select" id="filterCompleted">
+                                <option value="all">All Courses</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="react">React</option>
+                                <option value="sql">SQL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Assignment</th>
+                                    <th>Course</th>
+                                    <th>Submitted</th>
+                                    <th>Grade</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="completedTableBody">
+                            </tbody>                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Page -->
+            <div class="page" id="page-pending">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>⏳ Active Assignments</h3>
+                        <div class="card-header-actions">
+                            <select class="filter-select" id="filterPending">
+                                <option value="all">All</option>
+                                <option value="pending">In Progress</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pending-grid" id="pendingGrid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades Page -->
+            <div class="page" id="page-grades">
+                <div class="grades-overview">
+                    <div class="grade-summary-card">
+                        <div class="grade-circle">
+                            <svg viewBox="0 0 120 120" class="grade-svg">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="#6366f1" stroke-width="10"
+                                    stroke-dasharray="326.7" stroke-dashoffset="42.5" stroke-linecap="round"
+                                    transform="rotate(-90 60 60)"/>
+                            </svg>
+                            <div class="grade-circle-text">
+                                <span class="grade-number">87</span>
+                                <span class="grade-label">out of 100</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Overall Average</h3>
+                            <p>Great work! Keep it up 🎉</p>
+                        </div>
+                    </div>
+
+                    <div class="grade-details-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>📝 Assignment Grades</h3>
+                            </div>                            <div class="grade-list" id="gradeList">
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>📈 Course Statistics</h3>
+                            </div>
+                            <div class="course-stats">
+                                <div class="course-stat-item">
+                                    <div class="course-stat-header">
+                                        <span class="course-stat-name">JavaScript Basics</span>
+                                        <span class="course-stat-grade">92%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill progress-fill--blue" style="width:92%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-stat-item">
+                                    <div class="course-stat-header">
+                                        <span class="course-stat-name">Python Advanced</span>
+                                        <span class="course-stat-grade">78%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill progress-fill--orange" style="width:78%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-stat-item">
+                                    <div class="course-stat-header">
+                                        <span class="course-stat-name">React Fundamentals</span>
+                                        <span class="course-stat-grade">85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill progress-fill--green" style="width:85%"></div>
+                                    </div>
+                                </div>
+                                <div class="course-stat-item">
+                                    <div class="course-stat-header">
+                                        <span class="course-stat-name">SQL & Databases</span>
+                                        <span class="course-stat-grade">95%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill progress-fill--purple" style="width:95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Messages Page -->
+            <div class="page" id="page-messages">
+                <div class="messages-layout">
+                    <div class="messages-sidebar">
+                        <div class="messages-search">
+                            <input type="text" placeholder="Search messages..." id="msgSearchInput">
+                        </div>
+                        <div class="conversations-list" id="conversationsList">
+                        </div>
+                    </div>
+                    <div class="messages-main">
+                        <div class="messages-header" id="messagesHeader">
+                            <div class="messages-header-info">
+                                <div class="messages-header-avatar" style="background:#6366f1;">JD</div>
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <span class="messages-header-status">online</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="messages-body" id="messagesBody">
+                        </div>
+                        <div class="messages-input">
+                            <input type="text" placeholder="Type a message..." id="messageInput">
+                            <button class="send-btn" id="sendBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"/>
+                                    <polygon points="22,2 15,22 11,13 2,9"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notifPanel">
+        <div class="notif-header">
+            <h3>Notifications</h3>
+            <button class="clear-btn" id="clearNotifs">Clear all</button>
+        </div>
+        <div class="notif-list" id="notifList">
+            <div class="notif-item notif-item--unread">
+                <div class="notif-icon notif-icon--blue">📝</div>
+                <div class="notif-content">
+                    <p><strong>New Assignment:</strong> React Hooks Practice</p>                    <span class="notif-time">10 min ago</span>
+                </div>
+            </div>
+            <div class="notif-item notif-item--unread">
+                <div class="notif-icon notif-icon--green">✅</div>
+                <div class="notif-content">
+                    <p><strong>Assignment Graded:</strong> SQL Joins — 95/100</p>
+                    <span class="notif-time">2 hours ago</span>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon notif-icon--red">⚠️</div>
+                <div class="notif-content">
+                    <p><strong>Deadline Approaching:</strong> Python Decorators — tomorrow</p>
+                    <span class="notif-time">5 hours ago</span>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon notif-icon--purple">💬</div>
+                <div class="notif-content">
+                    <p><strong>New Message from:</strong> Maria Ivanova</p>
+                    <span class="notif-time">Yesterday</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
